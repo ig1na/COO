@@ -7,7 +7,7 @@ public class Monster extends Character{
 	}
 	
 	public void die(){
-		
+		System.out.println("You killed a monster! It dropped "+ this.getGold() + " gold!");
 	}
 
 }

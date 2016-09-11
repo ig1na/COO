@@ -42,4 +42,16 @@ public class Room {
 		this.items.add(i);
 	}
 
+	public boolean hasNeighbour(Direction d){
+		return neighbours.get(d) != null;
+	}
+	
+	public boolean hasNeighbours(){
+		return !neighbours.isEmpty();
+	}
+	
+	public void addNeighbour(Room r){
+		
+	}
 }
+

@@ -1,9 +1,5 @@
 package Characters;
 
-import java.util.List;
-
-import Actions.Action;
-
 public abstract class Character {
 
 	protected int life;
@@ -45,7 +41,7 @@ public abstract class Character {
 		this.strength = strength;
 	}
 	
-	abstract void die();
+	abstract boolean isDead();
 	
 }
 
