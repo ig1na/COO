@@ -8,7 +8,10 @@ import java.util.*;
 public class Collector<T> {
 
 	private T carriedObject;
-	
+	/**
+	 * Creates a collector, carries no object
+	 * @param  name the name of the collector
+	 */
     public Collector(String name) {
     	this.carriedObject = null;
     	this.name = name;
@@ -16,19 +19,18 @@ public class Collector<T> {
 
     private String name;
 	
-
+    
     public String toString() {
 	return this.name;
     }
     public String description() {
 	return this.name + " carries " + this.carriedObject;
     }
-    // METHODES a DEFINIR
-    // take : pour prendre un objet de type T (si aucun de "tenu")
-    // getCarriedObject : pour connaitre l'objet "porte" (null si saucun)
-    // giveTo : donne l'objet porte a un autre ramasseur compatible 
-    // drop : depose l'objet "tenu"
-
+    
+    /**
+     * the collector takes an object to carry it, throws an exception if he already carries an object
+     * @param object the object that will be carried by the collector
+     */
     public void collect(T object) throws AlreadyCarryingException{
     	if(this.carriedObject != null){
     		throw new AlreadyCarryingException("Already carrying an object");
@@ -37,14 +39,17 @@ public class Collector<T> {
     	}
     }
     
-    public void giveTo(Collector<? super T> col){
-    	try{
-    		col.collect(this.drop());
-    	} catch(AlreadyCarryingException e){
-    		System.err.println(e.getMessage());
-    	}
+    //the collector gives his object to another collector in parameter, throws an exception if the second collector already carries an object
+    public void giveTo(Collector<? super T> col) throws AlreadyCarryingException{
+    	col.collect(this.drop());
     }
     
+    //returns the carried object
+    public T getCarriedObject(){
+    	return this.carriedObject;
+    }
+    
+    //returns the carried object, the collector doesn't have it anymore
     public T drop(){
     	T drop = this.carriedObject;
     	this.carriedObject = null;
@@ -81,7 +86,12 @@ public class Collector<T> {
 		//carrotCollector1.giveTo(appleCollector1);
 
 		// COMPILE :
-			carrotCollector1.giveTo(vegetableCollector);
+			try {
+				carrotCollector1.giveTo(vegetableCollector);
+			} catch (AlreadyCarryingException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
 		// NE COMPILE PAS
 		//vegetableCollector.giveTo(carrotCollector1);
 		// NE COMPILE PAS
@@ -93,7 +103,12 @@ public class Collector<T> {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		carrotCollector1.giveTo(carrotCollector2);
+		try {
+			carrotCollector1.giveTo(carrotCollector2);
+		} catch (AlreadyCarryingException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 		System.out.println(carrotCollector1.description());
 		System.out.println(carrotCollector2.description());
 		try {
@@ -103,7 +118,12 @@ public class Collector<T> {
 			e1.printStackTrace();
 		}
 		
-		carrotCollector1.giveTo(carrotCollector2);
+		try {
+			carrotCollector1.giveTo(carrotCollector2);
+		} catch (AlreadyCarryingException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 
 		try {
 			appleCollector1.collect(p2);
