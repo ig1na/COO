@@ -1,5 +1,4 @@
 package generics;
-import java.util.*;
 
 /** define collectors able to collect (and carry) one specific type T of objects
  * only one T object can be carried at a time
@@ -8,6 +7,7 @@ import java.util.*;
 public class Collector<T> {
 
 	private T carriedObject;
+	private String name;
 	/**
 	 * Creates a collector, carries no object
 	 * @param  name the name of the collector
@@ -17,12 +17,19 @@ public class Collector<T> {
     	this.name = name;
     }
 
-    private String name;
-	
     
+	/**
+	 * Returns the name of the Collector
+	 * @return the name of the collector
+	 */
     public String toString() {
 	return this.name;
     }
+    
+    /**
+     * Returns a description of the collector in the form : name + carriedObject
+     * @return the description of the collector
+     */
     public String description() {
 	return this.name + " carries " + this.carriedObject;
     }
@@ -39,7 +46,11 @@ public class Collector<T> {
     	}
     }
     
-    //the collector gives his object to another collector in parameter, throws an exception if the second collector already carries an object
+    /**
+     * the collector gives his object to another collector in parameter, throws an exception if the second collector already carries an object
+     * @param col The collector who receives the Object
+     * @throws AlreadyCarryingException Throws the exception if the receiver already carries an object
+     */
     public void giveTo(Collector<? super T> col) throws AlreadyCarryingException{
     	col.collect(this.drop());
     }
