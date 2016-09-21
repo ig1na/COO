@@ -11,7 +11,7 @@ public class Watch extends Action {
 
 	@Override
 	public void act() {
-		
+		System.out.println(this.r);
 	}
 	
 	@Override

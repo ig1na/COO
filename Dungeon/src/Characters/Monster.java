@@ -10,4 +10,10 @@ public class Monster extends Character{
 		System.out.println("You killed a monster! It dropped "+ this.getGold() + " gold!");
 	}
 
+	@Override
+	boolean isDead() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

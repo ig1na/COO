@@ -49,9 +49,34 @@ public class Room {
 	public boolean hasNeighbours(){
 		return !neighbours.isEmpty();
 	}
-	
+	/**
+	 * 
+	 * @param r
+	 */
 	public void addNeighbour(Room r){
 		
+	}
+	
+	/**
+	 * Returns a description with the content of this Room
+	 */
+	public String toString(){
+		String desc;
+		
+		desc = "The room has "+monsters.size()+" monsters :\n";
+		for(Monster m : monsters){
+			desc += "\t"+monsters.indexOf(m)+". "+m+"\n";
+		}
+		
+		desc += "it also contains "+items.size()+" items :\n";
+		for(Item i : items){
+			desc += "\t"+items.indexOf(i)+". "+i+"\n";
+		}
+		
+		desc += "you may go :\n";
+		
+		
+		return desc;
 	}
 }
 

@@ -10,6 +10,7 @@ public abstract class Action {
 	
 	public Action(Player p, Room r){
 		this.p = p;
+		this.r = r;
 	}
 	
 	public abstract void act();

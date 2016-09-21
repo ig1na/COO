@@ -55,12 +55,18 @@ public class Collector<T> {
     	col.collect(this.drop());
     }
     
-    //returns the carried object
+    /**
+     * get the carried Object
+     * @return the carried object or null
+     */
     public T getCarriedObject(){
     	return this.carriedObject;
     }
     
-    //returns the carried object, the collector doesn't have it anymore
+    /**
+     * the collector drops its object which is returned
+     * @return the dropped Object or null
+     */
     public T drop(){
     	T drop = this.carriedObject;
     	this.carriedObject = null;

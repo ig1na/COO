@@ -27,4 +27,8 @@ public class Player extends Character {
 	public String getActionName(int i){
 		return this.actions.get(i).toString();
 	}
+	
+	public List<Action> getActionsList(){
+		return this.actions;
+	}
 }
