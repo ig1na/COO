@@ -1,5 +1,7 @@
 package Dungeon;
 
+import java.io.File;
+
 import Actions.*;
 import Characters.Player;
 
@@ -8,10 +10,12 @@ public class Game {
 	private Player p;
 	private Dungeon d;
 	
+	public Game(File map){
+
+	}
+	
 	public void play(){
 		
-		d = new Dungeon(5, 5, 100, 500, 70);
-		p = new Player(100, 0, 90);
 		
 		while(!this.isFinished()){
 			System.out.println("Choose an action :");
@@ -31,5 +35,9 @@ public class Game {
 		}
 		return false;
 		
+	}
+	
+	public static void main(String[] args){
+		Dungeon d = new Dungeon(10, 10, 10, 10, 10, new File("map.txt"));
 	}
 }

@@ -53,7 +53,7 @@ public class Room {
 	 * 
 	 * @param r
 	 */
-	public void addNeighbour(Room r){
+	public void addNeighbour(Direction d, Room r){
 		
 	}
 	
